@@ -14,8 +14,17 @@ class test_extract_markdown_links(unittest.TestCase):
         )
         self.assertEqual([("link", "https://www.google.com")], matches)
 
-    def text_multiple_links(self):
+    def test_multiple_links(self):
         matches = extract_markdown_links(
             "This is one [link](https://www.google.com) and this is [another](https://www.brave.com)"
         )
         self.assertEqual([("link", "https://www.google.com"), ("another", "https://www.brave.com")], matches)
+
+    def test_link_with_spaces(self):
+        matches = extract_markdown_links(
+            "Check this [cool search engine](https://www.google.com)"
+        )
+        self.assertEqual(
+            [("cool search engine", "https://www.google.com")],
+            matches,
+        )
