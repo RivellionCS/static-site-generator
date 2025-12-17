@@ -21,3 +21,23 @@ This is the same paragraph on a new line
                     "- This is a list\n- with items",
                 ],
             )
+        
+        def test_markdown_to_blocks_empty(self):
+            md = ""
+            blocks = markdown_to_blocks(md)
+            self.assertEqual(blocks, [])
+
+        def test_markdown_to_blocks_single_block(self):
+             md = "This is a single block"
+             blocks = markdown_to_blocks(md)
+             self.assertEqual(blocks, ["This is a single block"])
+
+        def test_markdown_to_blocks_whitespaces(self):
+             md = "    This is a block with trailing whitespaces    "
+             blocks = markdown_to_blocks(md)
+             self.assertEqual(blocks, ["This is a block with trailing whitespaces"])
+
+        def test_markdown_to_blocks_newlines_only(self):
+             md = "\n\n\n"
+             blocks = markdown_to_blocks(md)
+             self.assertEqual(blocks, [])
