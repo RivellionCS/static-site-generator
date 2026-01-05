@@ -12,11 +12,11 @@ class BlockType(Enum):
 def block_to_block_type(block):
     if re.match(r'^#{1,6}\s+.+', block):
         return BlockType.HEADING
-    if re.match(r'^```.*```$', block):
+    if re.match(r'^```[\s\S]*?```$', block):
         return BlockType.CODE
     if re.match(r'^(>.*\n?)+$', block):
         return BlockType.QUOTE
-    if re.match(r'^(?:-.*(?:\n|$))+', block):
+    if re.match(r'^(?:- .*(?:\n|$))+', block):
         return BlockType.UNORDERED_LIST
     split_lines = block.splitlines()
     expected_number = 1
