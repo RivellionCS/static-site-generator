@@ -18,7 +18,8 @@ def split_nodes_image(old_nodes):
             image_alt = image[0]
             image_link = image[1]
             sections = node_text.split(f"![{image_alt}]({image_link})", 1)
-            new_nodes.append(TextNode(sections[0], TextType.TEXT))
+            if sections[0] != "":
+                new_nodes.append(TextNode(sections[0], TextType.TEXT))
             new_nodes.append(TextNode(image_alt, TextType.IMAGE, image_link))
             node_text = sections[1]
         if node_text != "":

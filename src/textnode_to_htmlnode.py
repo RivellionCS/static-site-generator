@@ -2,7 +2,7 @@ from textnode import TextType, TextNode
 from leafnode import LeafNode
 
 def text_node_to_html_node(text_node):
-    if text_node.text_type in TextType.__members__:
+    if text_node.text_type not in TextType:
         raise Exception(f'Error: text type "{text_node.text_type}" is not supported')
     if text_node.text_type == TextType.TEXT:
         return LeafNode(None, text_node.text)

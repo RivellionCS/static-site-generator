@@ -1,4 +1,5 @@
 import os, shutil
+from generate_pages_recursive import generate_pages_recursive
 
 def copy_static_to_public():
     if os.path.exists("public"):
@@ -22,5 +23,6 @@ def recursive_copy(source, destination):
 
 def main():
     copy_static_to_public()
+    generate_pages_recursive("content/", "template.html", "public/")
 
 main()

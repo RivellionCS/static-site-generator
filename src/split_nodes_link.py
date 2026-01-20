@@ -18,7 +18,8 @@ def split_nodes_link(old_nodes):
             link_text = link[0]
             link_url = link[1]
             sections = node_text.split(f"[{link_text}]({link_url})", 1)
-            new_nodes.append(TextNode(sections[0], TextType.TEXT))
+            if sections[0] != "":
+                new_nodes.append(TextNode(sections[0], TextType.TEXT))
             new_nodes.append(TextNode(link_text, TextType.LINK, link_url))
             node_text = sections[1]
         if node_text != "":
